@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Source+Sans+Pro:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Yeagram</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <div class="navlist-wrapper">
+            <button id="theme-btn">
+              <img alt="icon-light" id="theme-icon" />
+            </button>
+            <h2>Yeagram</h2>
+          </div>
+        </li>
+        <li>
+          <div class="navlist-wrapper nav-items" id="nav-items">
+            <a href="#contact" id="contact">Contact</a>
+            <a href="#myproject" id="project">MyProject</a>
+            <a href="#about" id="about" class="active">About</a>
+          </div>
+
+          <button id="hamburger" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <div class="main-container">
+        <div class="content-wrapper">
+          <div class="content-me">
+            <figure>
+              <div class="capt">
+                <img src="asset/me-ilustration.svg" alt="yeag-ilustration" />
+                <figcaption>My Name is Dimas Januardi alias Yeagram</figcaption>
+              </div>
+
+              <div class="social">
+                <a href="#">
+                  <img src="asset/icon/icon-github.svg" alt="github-icon" />
+                </a>
+                <a href="#">
+                  <img src="asset/icon/icon-gmail.svg" alt="gmail-icon" />
+                </a>
+                <a href="#">
+                  <img
+                    src="asset/icon/icon-instagram.svg"
+                    alt="instagram-icon"
+                  />
+                </a>
+                <a href="#">
+                  <img src="asset/icon/icon-linkedin.svg" alt="linkedin-icon" />
+                </a>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="src/script.js"></script>
+  </body>
+</html>
