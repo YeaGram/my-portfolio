@@ -63,27 +63,21 @@ function SocialIcons() {
 SocialIcons();
 
 function OnMobileDevices() {
-  const mediaMobile = window.matchMedia("screen and (max-width: 600px)");
+  const navListContainer = document.querySelector("nav ul li:last-child");
+  const navList = document.getElementById("nav-items");
+  const mobileHamburgerButton = document.getElementById("hamburger");
 
-  if (mediaMobile.matches) {
-    const navListContainer = document.querySelector("nav ul li:last-child");
-    const navList = document.getElementById("nav-items");
-    const mobileHamburgerButton = document.getElementById("hamburger");
-
-    mobileHamburgerButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      navListContainer.classList.toggle("active");
-    });
-  } else {
-  }
+  mobileHamburgerButton.addEventListener("click", (e) => {
+    navListContainer.classList.toggle("active");
+  });
 }
 OnMobileDevices();
 
 function ActivePage() {
-  const items = document.querySelectorAll("#nav-items a");
+  const items = document.querySelectorAll("#nav-items button");
   const contentContainer = document.querySelector(".content-wrapper");
   const meContainer = document.querySelector(".content-me");
-  const activeState = document.querySelector("#nav-items a.active");
+  const activeState = document.querySelector("#nav-items button.active");
 
   const descContainer = document.createElement("div");
   descContainer.setAttribute("class", "content-desc");
@@ -95,10 +89,12 @@ function ActivePage() {
   items.forEach((item) => {
     item.addEventListener("click", function (e) {
       e.preventDefault();
+      if (this.id === descContainer.dataset.content) return;
       descContainer.innerHTML = "";
-      document.querySelector("#nav-items a.active").classList.remove("active");
+      document
+        .querySelector("#nav-items button.active")
+        .classList.remove("active");
       this.classList.add("active");
-
       setActivePage(item);
     });
   });
@@ -130,20 +126,41 @@ function ActivePage() {
         parent.classList.add(animation);
       }
 
+      const myProject = [
+        {
+          projectName: "WhatsApp-Bot",
+          url: "#",
+          description: "bot for whatsaapp",
+        },
+        {
+          projectName: "GameDatabase",
+          url: "#",
+          description: "about your game",
+        },
+        {
+          projectName: "Portfolio",
+          url: "#",
+          description: "just my portfolio",
+        },
+      ];
+
       parent.innerHTML = `
-      <h3>Some Project</h3>
-        <div class="project-header">
-          <h4>list of my project</h4>
-          <p>i have many project, but ill just take mybest project in this area.</p>
-        </div>
-        <ul class="project-list">
-         <li>Whatsapp-bot</li>
-         <li>GameDatabase</li>
-         <li>Portfolio</li>
-         <li>Fullstack NextJS + MongoDB E-Comerce</li>
-         <li>Indonesian School Restfull API</li>
-        </ul>
-      <a href="#">... click to view details.</a>`;
+      
+          <h3>Some Project</h3>
+          <div class="project-description">
+            <p>list of my project.</p>
+            <p>i have many project, but ill just take mybest project in this area.</p>
+          </div>
+          <ul class="project-list">
+          ${myProject
+            .map((project) => {
+              return `<li><a href="${project.url}">${project.projectName}</a></li>`;
+            })
+            .join("")}
+          </ul>
+        <a href="#">... click to view details.</a>
+      
+      </div>`;
     }
 
     // AboutPage
@@ -267,8 +284,3 @@ function ActivePage() {
   }
 }
 ActivePage();
-
-// for development
-window.addEventListener("resize", () => {
-  adjustMainContainerHeight();
-});

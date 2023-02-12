@@ -1,3 +1,5 @@
+/* @import url("../font/index.css"); */
+
 :root {
   --light-primary: rgb(213, 206, 163);
   --light-secondary: rgb(229, 229, 203);
@@ -9,7 +11,8 @@
 
   --dark-completly: rgb(16, 11, 7);
 
-  --mobile-size: 600px;
+  --fonts-primary: "Helvetica", Poppins, sans-serif;
+  --fonts-secondary: "Source sans pro", Poppins, sans-serif;
 }
 
 * {
@@ -29,8 +32,8 @@ nav {
   justify-content: center;
   align-items: center;
   width: 100%;
-  font-family: "Poppins", sans-serif;
-  position: relative;
+  font-family: var(--fonts-primary);
+  /* position: relative; */
 }
 body.light {
   background-color: var(--light-primary);
@@ -48,7 +51,7 @@ nav ul {
   color: var(--light-primary);
   background-color: var(--dark-completly);
   top: 0;
-  z-index: 10;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,37 +67,47 @@ nav li {
   display: flex;
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   height: 100%;
-  width: 100%;
 }
-
+nav li:first-child {
+  justify-content: flex-start;
+}
 nav li .navlist-wrapper {
-  width: 50%;
   display: flex;
   justify-content: space-between;
-  max-width: 20rem;
+  gap: 1rem;
 }
 nav li:first-child .navlist-wrapper {
-  justify-content: flex-start;
   gap: 1.7rem;
 }
 nav li .hamburger {
   display: none;
 }
-nav .navlist-wrapper.nav-items a {
+
+nav .navlist-wrapper.nav-items button[role="navigation"] {
   font-family: "Source Sans Pro";
   padding: 0.2rem 0.5rem;
   border-radius: 5%;
+  font-size: 1.2rem;
 }
-nav .navlist-wrapper.nav-items a {
+nav .navlist-wrapper.nav-items button[role="navigation"] {
   color: var(--light-p-low);
 }
-nav .navlist-wrapper.nav-items a.active {
-  color: #fff;
-  background-color: var(--dark-secondary);
+nav .navlist-wrapper.nav-items button[role="navigation"]:hover {
+  color: var(--light-primary);
 }
-
+nav .navlist-wrapper.nav-items button[role="navigation"].active {
+  color: #fff;
+  background-image: linear-gradient(
+    to bottom left,
+    var(--dark-secondary),
+    var(--dark-primary)
+  );
+}
+nav #theme-btn {
+  cursor: pointer !important;
+}
 nav #theme-icon {
   width: 30px;
   height: 30px;
@@ -113,9 +126,6 @@ main {
 main .main-container {
   height: 100%;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
 }
 main .main-container .content-wrapper {
@@ -125,7 +135,6 @@ main .main-container .content-wrapper {
   height: 100%;
   align-items: center;
   justify-content: center;
-  /* grid-template-columns: [me] [desc]; */
 }
 
 main .main-container .content-me {
@@ -134,7 +143,7 @@ main .main-container .content-me {
   position: absolute;
   left: 0;
   right: 0;
-  z-index: 30;
+  z-index: 25;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,7 +172,7 @@ main .content-me figure {
 main .content-me figcaption {
   text-align: center;
   white-space: nowrap;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--fonts-secondary);
   font-weight: bold;
   font-size: 2ch;
   color: var(--light-p-low);
@@ -205,14 +214,13 @@ main .content-me .social span {
   border-radius: 50%;
   background-color: var(--light-primary);
   transform: scale(100%);
+  transition: all;
   transition-duration: 1s;
   transform-origin: center;
 }
 
 /* content desc */
-body.light main .main-container .content-desc {
-  color: var(--dark-primary);
-}
+
 main .main-container .content-desc {
   z-index: 20;
   display: flex;
@@ -223,12 +231,13 @@ main .main-container .content-desc {
   width: 50%;
   flex-direction: column;
   justify-content: center;
-  font-family: "Poppins";
+  font-family: var(--fonts-secondary);
   color: var(--light-p-low);
   /* width: 100%; */
   padding: 0 4rem;
   gap: 2rem;
 }
+
 .animate {
   animation-name: moveTop;
   animation-duration: 0.5s;
@@ -279,7 +288,7 @@ main .content-desc ul.contact-social li {
   gap: 0.7rem;
 }
 main .main-container .content-desc[data-content="contact"] {
-  z-index: 100;
+  z-index: 30;
 }
 main .content-desc .contact-description div:last-child > p {
   font-size: 1rem;
@@ -292,23 +301,57 @@ main .content-desc ul.contact-social p {
   color: var(--light-primary);
 }
 
-main .main-container .content-desc h3 {
-  color: var(--light-primary);
-  line-height: 4.4rem;
-  font-size: 3.4rem;
+body.light main .main-container .content-desc h3 {
+  color: var(--dark-completly);
 }
-body.light main .main-container .content-desc p {
-  color: var(--light-primary);
+body.light main .main-container .content-desc p,
+body.light main .main-container .content-desc a {
+  color: var(--dark-secondary);
 }
 
-body.light main .main-container .content-desc a {
+main .main-container .content-desc h3 {
   color: var(--light-primary);
+  font-family: var(--fonts-primary);
+  line-height: 4.4rem;
+  font-size: 3.4rem;
 }
 main .main-container .content-desc p {
   font-size: 1.4rem;
 }
 main .main-container .content-desc a {
   color: var(--light-p-verylow);
+}
+
+/* contact */
+body.light main .main-container .content-desc[data-content="contact"] h3 {
+  color: var(--light-primary);
+}
+body.light main .main-container .content-desc[data-content="contact"] p,
+body.light main .main-container .content-desc[data-content="contact"] a {
+  color: var(--light-primary);
+}
+
+/* project */
+main .content-desc[data-content="project"] p:first-child {
+  font-size: 1.5rem;
+  color: var(--light-p-low);
+}
+main .content-desc[data-content="project"] p {
+  color: var(--light-p-verylow);
+}
+
+body.light main .content-desc[data-content="project"] li a::before {
+  color: var(--dark-primary);
+}
+main .content-desc[data-content="project"] li a::before {
+  color: var(--light-primary);
+  content: "●";
+  display: inline-block;
+  padding: 0 0.5rem;
+}
+main .content-desc[data-content="project"] a {
+  font-size: 1.2rem;
+  color: var(--light-p-low);
 }
 /* // */
 
@@ -322,6 +365,9 @@ main .main-container .content-desc a {
 }
 
 @media only screen and (max-width: 600px) {
+  nav li:last-child {
+    justify-content: flex-end;
+  }
   nav li .hamburger {
     display: flex;
     align-items: end;
@@ -329,38 +375,36 @@ main .main-container .content-desc a {
     gap: 0.2rem;
     flex: 1;
     cursor: pointer;
+    transition: all 100ms cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
-  nav li .navlist-wrapper {
-    width: 100%;
-  }
-
-  /* kondisi mobilebutton */
   nav li:last-child .navlist-wrapper {
     flex-direction: column;
     position: absolute;
     background-color: var(--dark-completly);
-    width: 100%;
-    max-width: 100%;
-    height: fit-content;
     left: 0;
+    right: 0;
+    min-width: 100%;
     top: -100%;
     z-index: -1;
-    transition: all;
+    transition-property: all;
     transition-duration: 250ms;
     text-align: center;
     border-top: 2px solid var(--light-primary);
   }
   nav li:last-child.active .navlist-wrapper {
-    width: 100%;
-    left: 0;
     top: 100%;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
   }
-  nav li:last-child .navlist-wrapper a {
+  nav li:last-child .navlist-wrapper button[role="navigation"] {
     padding: 1rem;
+    /* border-radius: 20px; */
   }
-  nav li:last-child .navlist-wrapper a.active {
-    border-radius: 0;
+  nav li:last-child .navlist-wrapper button[role="navigation"].active {
+    box-shadow: inset 0px 10px 10px rgba(0, 0, 0, 0.3);
+  }
+  nav li:last-child.active .hamburger {
+    gap: 0.5rem;
   }
 
   /* //// */
@@ -382,12 +426,9 @@ main .main-container .content-desc a {
 
 @media only screen and (max-width: 1000px) {
   body.light main .main-container .content-desc h3,
-  body.light main .main-container .content-desc p {
-    color: var(--dark-primary);
-  }
-
+  body.light main .main-container .content-desc p,
   body.light main .main-container .content-desc a {
-    color: var(--dark-primary);
+    color: var(--dark-primary) !important;
   }
 
   body.light main .content-desc ul.contact-social svg {
@@ -415,13 +456,11 @@ main .main-container .content-desc a {
   }
   main .main-container .content-desc {
     position: static;
-    z-index: 100;
   }
 
   main .main-container .content-me {
     position: static;
     width: 100%;
-    height: 100vh;
     flex: 1;
     z-index: 0;
     padding: 2rem 0;
